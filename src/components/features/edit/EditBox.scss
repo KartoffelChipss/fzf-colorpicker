@@ -1,0 +1,17 @@
+@use "../../../variables" as *;
+
+.editBox {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    h2 {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+
+        svg {
+            color: $accent-color-blue;
+        }
+    }
+}

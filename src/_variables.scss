@@ -1,0 +1,16 @@
+$font: Montserrat, sans-serif;
+
+$accent-color-magenta: light-dark(#a34aca, #b977d7);
+$accent-color-blue: light-dark(#5a6ef6, #8a96ed);
+$accent-color-cyan: light-dark(#71d8eb, #94e3f0);
+
+$bg-color: light-dark(#fefefe, #1d1e27);
+$bg-color-accent: light-dark(#f5f5f5, #2e2e3a);
+
+$glass-bg: light-dark(rgba(0,0,0, .1), rgba(255,255,255, .01));
+$glass-border: light-dark(rgba(0,0,0, .3), rgba(255,255,255, .3));
+
+$font-light: light-dark(#000, #fff);
+$font-muted: light-dark(#4d4d4d, #cecece);
+
+$error: #f44336;

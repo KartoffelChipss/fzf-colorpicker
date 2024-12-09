@@ -1,0 +1,18 @@
+@use "../../../variables" as *;
+
+.generatedCode {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    margin-bottom: 50px;
+
+    font-family: 'JetBrains Mono', monospace;
+
+    background-color: $bg-color-accent;
+
+    .line {
+        display: flex;
+        align-items: center;
+    }
+}

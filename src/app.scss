@@ -1,0 +1,21 @@
+@use "variables" as *;
+
+#app {
+    --padding: 20px;
+    max-width: 1280px;
+    height: 100vh;
+    width: calc(100% - var(--padding) * 2);
+    padding: 0 var(--padding);
+    margin: 0 auto;
+    background-color: $bg-color;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+
+    display: flex;
+
+    background-color: $bg-color;
+}

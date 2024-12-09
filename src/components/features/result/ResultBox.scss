@@ -1,0 +1,18 @@
+@use "../../../variables" as *;
+
+.resultBox {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    h2 {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+        margin-bottom: 20px;
+
+        svg {
+            color: $accent-color-blue;
+        }
+    }
+}

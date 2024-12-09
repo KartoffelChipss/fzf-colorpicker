@@ -1,0 +1,15 @@
+.preview {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    margin-bottom: 50px;
+
+    // mono
+    font-family: 'JetBrains Mono', monospace;
+
+    .line {
+        display: flex;
+        align-items: center;
+    }
+}
