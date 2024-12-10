@@ -91,6 +91,12 @@ img.icon, svg.icon {
     color: $font-muted;
 }
 
+.btns {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 button,
 a.button {
     --padding: 35px;
@@ -154,8 +160,8 @@ a.button {
         width: calc(100% - var(--padding) * 2);
     }
 
-    &.blue {
-        background-color: rgba(48, 85, 152, 0.2);
+    &.magenta {
+        background-color: light-dark(rgba(163, 74, 202, .2), rgba(185, 119, 215, .2));
         border-color: $accent-color-magenta;
     }
 

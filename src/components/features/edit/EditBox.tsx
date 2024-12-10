@@ -2,8 +2,12 @@ import { useState } from "preact/hooks";
 import { ColorPalette } from "../../../interfaces/ColorPalette";
 import ColorPicker from "../../common/ColorPicker/ColorPicker";
 import "./EditBox.scss";
-import {ChevronRight} from "dazzle-icons/src";
+import {ArrowDownToBracket, ArrowUpFromBracket, Check, ChevronRight, FileCopy} from "dazzle-icons/src";
 import { FunctionalComponent } from "preact";
+import Modal from "../../common/Modal/Modal";
+import Reddit from "../../common/icons/Reddit";
+import XformerlyTwitter from "../../common/icons/Twitter";
+import WhatsApp from "../../common/icons/WhatsApp";
 
 interface EditBoxProps {
     defaultColorPalette: ColorPalette;
@@ -11,7 +15,11 @@ interface EditBoxProps {
 }
 
 const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPalette }) => {
+    const link = window.location.href;
+
     const [colorPalette, setColorPalette] = useState<ColorPalette>(defaultColorPalette);
+    const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [linkCopied, setLinkCopied] = useState(false);
 
     const updateColorPalette = (key: keyof ColorPalette, value: string) => {
         const newColorPalette = { ...colorPalette, [key]: value };
@@ -19,25 +27,95 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
         if (onChange) onChange(newColorPalette);
     };
 
-    return (
-        <div class={"editBox"}>
-            <h2>
-                <ChevronRight />
-                Colors
-            </h2>
+    const copyLink = () => {
+        navigator.clipboard.writeText(link);
+        setLinkCopied(true);
 
-            <div className="pickers">
-                {Object.entries(colorPalette).map(([key, value]) => (
-                    <ColorPicker
-                        key={key}
-                        label={key}
-                        defaultColor={value}
-                        onChange={(newColor) => updateColorPalette(key as keyof ColorPalette, newColor)}
-                        resetButton={key === "fg" || key === "bg"}
-                    />
-                ))}
+        setTimeout(() => {
+            setLinkCopied(false);
+        }, 2000);
+    }
+
+    return (
+        <>
+            <div class={"editBox"}>
+                <h2>
+                    <ChevronRight />
+                    Colors
+                </h2>
+
+                <div className="pickers">
+                    {Object.entries(colorPalette).map(([key, value]) => (
+                        <ColorPicker
+                            key={key}
+                            label={key}
+                            defaultColor={value}
+                            onChange={(newColor) => updateColorPalette(key as keyof ColorPalette, newColor)}
+                            resetButton={key === "fg" || key === "bg"}
+                        />
+                    ))}
+                </div>
+
+                <div className="btns">
+                    <button>
+                        <ArrowDownToBracket />
+                        Import
+                    </button>
+                    <button
+                        className={"magenta"}
+                        onClick={() => setIsShareModalOpen(true)}
+                    >
+                        <ArrowUpFromBracket />
+                        Share
+                    </button>
+                </div>
             </div>
-        </div>
+
+            <Modal
+                isOpen={isShareModalOpen}
+                onClose={() => setIsShareModalOpen(false)}
+                className={"shareModal"}
+                closeBtn={true}
+            >
+                <h2>Share your color palette</h2>
+                <button 
+                    className={"button shareBox"}
+                    onClick={copyLink}
+                >
+                    <div className="iconBox">
+                        {linkCopied ? <Check /> : <FileCopy />}
+                    </div>
+                    <span>Copy Link to clipboard</span>
+                </button>
+                <a 
+                    href={`https://www.reddit.com/submit?url=${encodeURIComponent(link)}&title=Create%20and%20Share%20Color%20Palettes%20for%20fzf%20Easily!`}
+                    className={"button shareBox"}
+                    target={"_blank"}
+                    rel={"noreferrer noopener"}
+                >
+                    <Reddit />
+                    <span>Share on Reddit</span>
+                </a>
+                <a
+                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}&text=Create%20and%20Share%20Color%20Palettes%20for%20fzf%20Easily!`} 
+                    className={"button shareBox"}
+                    target={"_blank"}
+                    rel={"noreferrer noopener"}
+                >
+                    <XformerlyTwitter />
+                    <span>Share on X</span>
+                </a>
+                <a
+                    href={`https://wa.me/?text=Check%20out%20this%20website%20that%20lets%20you%20create%20and%20share%20custom%20color%20palettes%20for%20fzf!%20${encodeURIComponent(link)}`}
+                    className={"button shareBox"}
+                    target={"_blank"}
+                    rel={"noreferrer noopener"}
+                >
+                    <WhatsApp />
+                    <span>Share on WhatsApp</span>
+                </a>
+            </Modal>
+        </>
     )
 }
 

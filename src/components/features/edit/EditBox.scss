@@ -24,3 +24,21 @@
         margin-bottom: 50px;
     }
 }
+
+button.shareBox, a.button.shareBox {
+    --padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    padding: 10px var(--padding);
+
+    svg {
+        --hw: 23px;
+        height: var(--hw);
+        width: var(--hw);
+    }
+}
+
+a.button.shareBox {
+    width: calc(100% - var(--padding) * 2);
+}
