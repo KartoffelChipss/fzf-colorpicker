@@ -1,3 +1,5 @@
+@use "../../../variables.scss" as *;
+
 .colorPicker {
     position: relative;
     display: flex;
@@ -17,14 +19,18 @@
         border-radius: 8px;
 
         .swatch {
-            height: 23px;
-            width: 23px;
+            --hw: 23px;
+            height: var(--hw);
+            width: var(--hw);
+            min-height: var(--hw);
+            min-width: var(--hw);
             background-color: red;
             border-radius: 3px;
             border: 1px solid light-dark(rgba(0, 0, 0, .05), rgba(255, 255, 255, .05));
         }
 
         input {
+            font-family: $font-mono;
             height: 100%;
             padding: 0px;
             border: none;

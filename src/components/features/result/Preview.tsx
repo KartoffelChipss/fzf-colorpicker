@@ -7,36 +7,39 @@ interface PreviewProps {
 }
 
 const Preview: FunctionalComponent<PreviewProps> = ({ colorPalette }) => {
+    const bgColor = colorPalette.bg === "-1" ? "#121212" : colorPalette.bg;
+    const fgColor = colorPalette.fg === "-1" ? "#d0d0d0" : colorPalette.fg;
+
     return (
-        <div className={"preview card"} style={{backgroundColor: colorPalette.bg}}>
+        <div className={"preview card"} style={{backgroundColor: bgColor }}>
             <div className="line">
                 <span className="bgp" style={{backgroundColor: colorPalette.bgPlus}}>&#160;</span>
                 <div className="marker" style={{color: colorPalette.marker}}>&gt;</div>
-                <span className="fg" style={{color: colorPalette.fg}}>src/fzf/main</span>
+                <span className="fg" style={{color: fgColor}}>src/fzf/main</span>
                 <span className="hl" style={{color: colorPalette.hl}}>.go</span>
             </div>
             <div className="line">
                 <span className="bgp" style={{backgroundColor: colorPalette.bgPlus}}>&#160;</span>
                 <div className="marker" style={{color: colorPalette.marker}}>&#160;</div>
-                <span className="fg" style={{color: colorPalette.fg}}>src/pattern</span>
+                <span className="fg" style={{color: fgColor}}>src/pattern</span>
                 <span className="hl" style={{color: colorPalette.hl}}>.go</span>
             </div>
             <div className="line">
                 <span className="bgp" style={{backgroundColor: colorPalette.bgPlus}}>&#160;</span>
                 <div className="marker" style={{color: colorPalette.marker}}>&gt;</div>
-                <span className="fg" style={{color: colorPalette.fg}}>src/options</span>
+                <span className="fg" style={{color: fgColor}}>src/options</span>
                 <span className="hl" style={{color: colorPalette.hl}}>.go</span>
             </div>
             <div className="line">
                 <span className="bgp" style={{backgroundColor: colorPalette.bgPlus}}>&#160;</span>
                 <div className="marker" style={{color: colorPalette.marker}}>&#160;</div>
-                <span className="fg" style={{color: colorPalette.fg}}>src/matcher</span>
+                <span className="fg" style={{color: fgColor}}>src/matcher</span>
                 <span className="hl" style={{color: colorPalette.hl}}>.go</span>
             </div>
             <div className="line">
                 <span className="bgp" style={{backgroundColor: colorPalette.bgPlus}}>&#160;</span>
                 <div className="marker" style={{color: colorPalette.marker}}>&#160;</div>
-                <span className="fg" style={{color: colorPalette.fg}}>src/history</span>
+                <span className="fg" style={{color: fgColor}}>src/history</span>
                 <span className="hl" style={{color: colorPalette.hl}}>.go</span>
             </div>
             <div className="line">
@@ -48,7 +51,7 @@ const Preview: FunctionalComponent<PreviewProps> = ({ colorPalette }) => {
             <div className="line">
                 <span className="bgp" style={{backgroundColor: colorPalette.bgPlus}}>&#160;</span>
                 <div className="marker" style={{color: colorPalette.marker}}>&#160;</div>
-                <span className="fg" style={{color: colorPalette.fg}}>src/merger</span>
+                <span className="fg" style={{color: fgColor}}>src/merger</span>
                 <span className="hl" style={{color: colorPalette.hl}}>.go</span>
             </div>
             <div class="line">

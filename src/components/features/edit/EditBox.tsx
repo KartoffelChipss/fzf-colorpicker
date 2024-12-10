@@ -32,6 +32,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange }) => {
                         label={key}
                         defaultColor={value}
                         onChange={(newColor) => updateColorPalette(key as keyof ColorPalette, newColor)}
+                        resetButton={key === "fg" || key === "bg"}
                     />
                 ))}
             </div>

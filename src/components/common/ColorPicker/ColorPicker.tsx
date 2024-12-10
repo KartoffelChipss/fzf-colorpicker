@@ -3,14 +3,16 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import "./ColorPicker.scss";
 import { HexColorPicker } from "react-colorful";
 import { useDebouncyEffect } from "use-debouncy";
+import { Xmark } from "dazzle-icons";
 
 interface ColorPickerProps {
     label?: string;
     defaultColor?: string;
     onChange?: (newColor: string) => void;
+    resetButton?: boolean;
 }
 
-const ColorPicker: FunctionalComponent<ColorPickerProps> = ({ label, defaultColor, onChange }) => {
+const ColorPicker: FunctionalComponent<ColorPickerProps> = ({ label, defaultColor, onChange, resetButton }) => {
     const [color, setColor] = useState(defaultColor || "#000000");
     const [isFocused, setIsFocused] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -60,13 +62,13 @@ const ColorPicker: FunctionalComponent<ColorPickerProps> = ({ label, defaultColo
             <div className="picker">
                 <div 
                     className="swatch" 
-                    style={{ backgroundColor: color }}
+                    style={{ backgroundColor: color !== "-1" ? color : "transparent" }}
                     onClick={() => inputRef.current?.focus()}
                 />
                 <input
                     ref={inputRef}
                     type="text"
-                    value={color}
+                    value={color === "-1" ? "" : color}
                     onInput={handleColorInput}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
@@ -74,6 +76,14 @@ const ColorPicker: FunctionalComponent<ColorPickerProps> = ({ label, defaultColo
                     autoComplete="off"
                     spellcheck={false}
                 />
+                {resetButton && (
+                    <button 
+                        className="resetButton clear"
+                        onClick={() => setColor("-1")}
+                    >
+                        <Xmark />
+                    </button>
+                )}
             </div>
             {isFocused && (
                 <div ref={containerRef} className="colorPickerDropdown">
