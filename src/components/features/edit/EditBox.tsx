@@ -1,15 +1,16 @@
 import { useState } from "preact/hooks";
-import { ColorPalette, defaultColorPalette } from "../../../interfaces/ColorPalette";
+import { ColorPalette } from "../../../interfaces/ColorPalette";
 import ColorPicker from "../../common/ColorPicker/ColorPicker";
 import "./EditBox.scss";
 import {ChevronRight} from "dazzle-icons/src";
 import { FunctionalComponent } from "preact";
 
 interface EditBoxProps {
+    defaultColorPalette: ColorPalette;
     onChange?: (newColorPalette: ColorPalette) => void;
 }
 
-const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange }) => {
+const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPalette }) => {
     const [colorPalette, setColorPalette] = useState<ColorPalette>(defaultColorPalette);
 
     const updateColorPalette = (key: keyof ColorPalette, value: string) => {
