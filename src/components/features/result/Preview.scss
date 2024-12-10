@@ -5,7 +5,8 @@
     padding: 20px;
     margin-bottom: 50px;
 
-    // mono
+    border: 1px solid light-dark(rgba(0, 0, 0, .05), rgba(255, 255, 255, .05));
+
     font-family: 'JetBrains Mono', monospace;
 
     .line {

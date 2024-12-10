@@ -26,7 +26,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange }) => {
             </h2>
 
             <div className="pickers">
-            {Object.entries(colorPalette).map(([key, value]) => (
+                {Object.entries(colorPalette).map(([key, value]) => (
                     <ColorPicker
                         key={key}
                         label={key}

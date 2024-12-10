@@ -1,18 +1,28 @@
 @use "../../../variables" as *;
 
 .generatedCode {
+    position: relative;
     display: flex;
     flex-direction: column;
 
     padding: 20px;
+    margin-top: 0px;
     margin-bottom: 50px;
 
     font-family: $font-mono;
 
-    background-color: $bg-color-accent;
+    background-color: light-dark(rgba(0, 0, 0, .05), rgba(255, 255, 255, .05));
+    border: 1px solid light-dark(rgba(0, 0, 0, .05), rgba(255, 255, 255, .05));
 
     .line {
         display: flex;
         align-items: center;
+    }
+
+    button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #32323b;
     }
 }
