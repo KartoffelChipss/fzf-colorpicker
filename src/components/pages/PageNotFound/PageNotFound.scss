@@ -1,0 +1,24 @@
+main.pageNotFound {
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    img.cat {
+        height: 100px;
+    }
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+
+    .button {
+        svg {
+            --hw: 25px;
+            height: var(--hw);
+            width: var(--hw);
+        }
+    }
+}
