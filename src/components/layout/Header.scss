@@ -4,6 +4,16 @@ header {
     justify-content: space-between;
     padding: 30px 0;
 
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        img {
+            height: 45px;
+        }
+    }
+
     h1 {
         font-size: 2.0rem;
         margin: 0;

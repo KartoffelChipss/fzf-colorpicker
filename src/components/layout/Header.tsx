@@ -6,7 +6,8 @@ import "./Header.scss";
 const Header = () => {
     return (
         <header>
-            <Link to={"/"}>
+            <Link to={"/"} className={"logo"}>
+                <img src={"/fzf-cat-small.png"} />
                 <h1>fzf Color Picker</h1>
             </Link>
 
