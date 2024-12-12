@@ -5,6 +5,13 @@
     flex-direction: column;
     flex-grow: 1;
 
+    max-width: 50%;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: 1150px) {
+        max-width: unset;
+    }
+
     h2 {
         display: flex;
         align-items: center;
@@ -13,6 +20,22 @@
 
         svg {
             color: $accent-color-blue;
+        }
+    }
+
+    .questionBox {
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+
+        color: $font-muted;
+
+        svg {
+            --hw: 30px;
+            height: var(--hw);
+            width: var(--hw);
+            min-height: var(--hw);
+            min-width: var(--hw);
         }
     }
 }

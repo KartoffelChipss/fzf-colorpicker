@@ -1,5 +1,5 @@
 import "./ResultBox.scss";
-import {ChevronRight} from "dazzle-icons";
+import {ChevronRight, CircleQuestion} from "dazzle-icons";
 import Preview from "./Preview.tsx";
 import {ColorPalette} from "../../../util/ColorPalette.ts";
 import {FunctionalComponent} from "preact";
@@ -25,6 +25,11 @@ const ResultBox: FunctionalComponent<ResultBoxProps> = ({ colorPalette }) => {
             </h2>
 
             <GeneratedCode colorPalette={colorPalette} />
+
+            <div className="questionBox">
+                <CircleQuestion />
+                To apply the generated color scheme, you can either copy the generated code into your terminal or add it to the top of your .zshrc file to make the changes permanent.
+            </div>
         </div>
     );
 }
