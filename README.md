@@ -2,7 +2,7 @@
   <img height="80px" src="https://f.j4n.net/fzf-cat.png" alt="logo">
   <h3 align="center"><b>fzf Color Picker</b></h3>
 
-  <p align="center" >Easily generate and share a color palette for fzf</p>
+  <p align="center" >Easily generate and share a color palette for <a href="https://github.com/junegunn/fzf">fzf</a></p>
 </p>
 
 ---
