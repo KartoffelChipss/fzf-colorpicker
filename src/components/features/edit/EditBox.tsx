@@ -1,5 +1,5 @@
 import { useState } from "preact/hooks";
-import { ColorPalette } from "../../../interfaces/ColorPalette";
+import { ColorPalette, importColorPalette } from "../../../util/ColorPalette";
 import ColorPicker from "../../common/ColorPicker/ColorPicker";
 import "./EditBox.scss";
 import {ArrowDownToBracket, ArrowUpFromBracket, Check, ChevronRight, FileCopy} from "dazzle-icons/src";
@@ -19,7 +19,9 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
 
     const [colorPalette, setColorPalette] = useState<ColorPalette>(defaultColorPalette);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+    const [isImportModalOpen, setIsImportModalOpen] = useState(false);
     const [linkCopied, setLinkCopied] = useState(false);
+    const [importValue, setImportValue] = useState("");
 
     const updateColorPalette = (key: keyof ColorPalette, value: string) => {
         const newColorPalette = { ...colorPalette, [key]: value };
@@ -36,6 +38,11 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
         }, 2000);
     }
 
+    const handlePaletteImport = (variable: string) => {
+        const newColorPalette: ColorPalette = importColorPalette(variable);
+        window.location.href = `/?${new URLSearchParams(newColorPalette as any).toString()}`;
+    }
+
     return (
         <>
             <div class={"editBox"}>
@@ -47,7 +54,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
                 <div className="pickers">
                     {Object.entries(colorPalette).map(([key, value]) => (
                         <ColorPicker
-                            key={key}
+                            key={`${key}`}
                             label={key}
                             defaultColor={value}
                             onChange={(newColor) => updateColorPalette(key as keyof ColorPalette, newColor)}
@@ -57,7 +64,9 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
                 </div>
 
                 <div className="btns">
-                    <button>
+                    <button
+                        onClick={() => setIsImportModalOpen(true)}
+                    >
                         <ArrowDownToBracket />
                         Import
                     </button>
@@ -114,6 +123,30 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
                     <WhatsApp />
                     <span>Share on WhatsApp</span>
                 </a>
+            </Modal>
+
+            <Modal
+                isOpen={isImportModalOpen}
+                onClose={() => setIsImportModalOpen(false)}
+                className={"importModal"}
+                closeBtn={true}
+            >
+                <h2>Import a color palette</h2>
+                <p>Import a color palette from the FZF_DEFAULT_OPTS environment variable.</p>
+                <textarea
+                    placeholder={"export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'\n --color=fg:#d0d0d0,bg:#121212,hl:#5f87af\n --color=fg+:#d0d0d0,bg+:#262626,hl+:#5fd7ff\n --color=info:#afaf87,prompt:#d7005f,pointer:#af5fff\n --color=marker:#87ff00,spinner:#af5fff,header:#87afaf'"}
+                    onInput={(e) => setImportValue((e.target as HTMLTextAreaElement).value)}
+                    value={importValue}
+                />
+                <div className="btns">
+                    <button onClick={() => setIsImportModalOpen(false)}>
+                        Cancel
+                    </button>
+                    <button className={"magenta"} onClick={() => handlePaletteImport(importValue)}>
+                        <ArrowDownToBracket />
+                        Import
+                    </button>
+                </div>
             </Modal>
         </>
     )

@@ -1,7 +1,7 @@
 import "./ResultBox.scss";
 import {ChevronRight} from "dazzle-icons";
 import Preview from "./Preview.tsx";
-import {ColorPalette} from "../../../interfaces/ColorPalette.ts";
+import {ColorPalette} from "../../../util/ColorPalette.ts";
 import {FunctionalComponent} from "preact";
 import GeneratedCode from "./GeneratedCode.tsx";
 

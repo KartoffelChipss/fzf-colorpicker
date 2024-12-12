@@ -2,7 +2,7 @@ import Header from "../../layout/Header.tsx";
 import EditBox from "../../features/edit/EditBox.tsx";
 import ResultBox from "../../features/result/ResultBox.tsx";
 import "./Main.scss";
-import {ColorPalette, extractColorPaletteFromUrl} from "../../../interfaces/ColorPalette.ts";
+import {ColorPalette, extractColorPaletteFromUrl} from "../../../util/ColorPalette.ts";
 import {useEffect, useState} from "preact/hooks";
 
 const Main = () => {
@@ -20,7 +20,7 @@ const Main = () => {
         <>
             <Header />
             <main className={"main"}>
-                <EditBox onChange={setColorPalette} defaultColorPalette={colorPalette} />
+                <EditBox onChange={setColorPalette} defaultColorPalette={colorPalette}/>
                 <ResultBox colorPalette={colorPalette} />
             </main>
         </>

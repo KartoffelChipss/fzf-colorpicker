@@ -198,7 +198,7 @@ a.button {
     }
 }
 
-input, select {
+input, select, textarea {
     --padding: 10px;
     --border-width: 1px;
     width: calc(100% - var(--padding) * 2 - var(--border-width) * 2);

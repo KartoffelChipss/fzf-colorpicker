@@ -1,5 +1,5 @@
 import "./Preview.scss";
-import {ColorPalette} from "../../../interfaces/ColorPalette.ts";
+import {ColorPalette} from "../../../util/ColorPalette.ts";
 import {FunctionalComponent} from "preact";
 
 interface PreviewProps {

@@ -59,3 +59,35 @@ export function extractColorPaletteFromUrl(query: string): ColorPalette {
         header,
     }
 }
+
+export function importColorPalette(variable: string): ColorPalette {
+    const palette: ColorPalette = defaultColorPalette;
+
+    const regex = /([\w+-]+):#([a-fA-F0-9]{6})/g;
+    const lines = variable.split(/\s--color=/);
+
+    for (const line of lines) {
+        let match: RegExpExecArray | null;
+        while ((match = regex.exec(line)) !== null) {
+            const key = match[1].trim();
+            const value = `#${match[2].trim()}`;
+
+            switch (key) {
+                case "fg": palette.fg = value; break;
+                case "fg+": palette.fgPlus = value; break;
+                case "bg": palette.bg = value; break;
+                case "bg+": palette.bgPlus = value; break;
+                case "hl": palette.hl = value; break;
+                case "hl+": palette.hlPlus = value; break;
+                case "info": palette.info = value; break;
+                case "marker": palette.marker = value; break;
+                case "prompt": palette.prompt = value; break;
+                case "spinner": palette.spinner = value; break;
+                case "pointer": palette.pointer = value; break;
+                case "header": palette.header = value; break;
+            }
+        }
+    }
+
+    return palette;
+}

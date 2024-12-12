@@ -42,3 +42,21 @@ button.shareBox, a.button.shareBox {
 a.button.shareBox {
     width: calc(100% - var(--padding) * 2);
 }
+
+.importModal {
+    .modal-content {
+        min-width: 40%;
+    }
+
+    p {
+        margin: 0;
+        color: $font-muted;
+    }
+
+    textarea {
+        font-family: $font-mono;
+        resize: vertical;
+        min-height: 100px;
+        height: 100px;
+    }
+}
