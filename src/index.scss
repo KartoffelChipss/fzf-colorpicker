@@ -267,7 +267,7 @@ input, select, textarea {
     .modal-content {
         padding: 30px;
         width: 400px;
-        background: #1b1c1e;
+        background: light-dark(#f1f1f1, #1b1c1e);
         border-radius: 16px;
         border: 1px solid rgba(72, 72, 72, 0.3);
         margin: 0 20px;

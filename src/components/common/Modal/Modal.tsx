@@ -1,6 +1,7 @@
 import { FunctionalComponent, JSX } from "preact";
 import "./Modal.scss";
 import { Xmark } from "dazzle-icons";
+import { useEffect } from "preact/hooks";
 
 interface ModalProps {
     isOpen?: boolean;
@@ -20,6 +21,22 @@ const Modal: FunctionalComponent<ModalProps> = ({ isOpen, onClose, className, cl
             handleClose();
         }
     };
+
+    useEffect(() => {
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                handleClose();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener("keydown", handleKeyDown);
+        }
+
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [isOpen]);
 
     return (
         <div 
