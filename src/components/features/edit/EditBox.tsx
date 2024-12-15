@@ -15,13 +15,17 @@ interface EditBoxProps {
 }
 
 const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPalette }) => {
-    const link = window.location.href;
-
     const [colorPalette, setColorPalette] = useState<ColorPalette>(defaultColorPalette);
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const [isImportModalOpen, setIsImportModalOpen] = useState(false);
     const [linkCopied, setLinkCopied] = useState(false);
     const [importValue, setImportValue] = useState("");
+
+    const constructLink = (colorPalette: ColorPalette) => {
+        const params = new URLSearchParams(colorPalette as any);
+        const baseUrl = `${window.location.protocol}//${window.location.host}`;
+        return `${baseUrl}/?${params.toString()}`;
+    }
 
     const updateColorPalette = (key: keyof ColorPalette, value: string) => {
         const newColorPalette = { ...colorPalette, [key]: value };
@@ -30,7 +34,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
     };
 
     const copyLink = () => {
-        navigator.clipboard.writeText(link);
+        navigator.clipboard.writeText(constructLink(colorPalette));
         setLinkCopied(true);
 
         setTimeout(() => {
@@ -97,7 +101,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
                     <span>Copy Link to clipboard</span>
                 </button>
                 <a 
-                    href={`https://www.reddit.com/submit?url=${encodeURIComponent(link)}&title=Create%20and%20Share%20Color%20Palettes%20for%20fzf%20Easily!`}
+                    href={`https://www.reddit.com/submit?url=${encodeURIComponent(constructLink(colorPalette))}&title=Create%20and%20Share%20Color%20Palettes%20for%20fzf%20Easily!`}
                     className={"button shareBox"}
                     target={"_blank"}
                     rel={"noreferrer noopener"}
@@ -106,7 +110,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
                     <span>Share on Reddit</span>
                 </a>
                 <a
-                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(link)}&text=Create%20and%20Share%20Color%20Palettes%20for%20fzf%20Easily!`} 
+                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(constructLink(colorPalette))}&text=Create%20and%20Share%20Color%20Palettes%20for%20fzf%20Easily!`} 
                     className={"button shareBox"}
                     target={"_blank"}
                     rel={"noreferrer noopener"}
@@ -115,7 +119,7 @@ const EditBox: FunctionalComponent<EditBoxProps> = ({ onChange, defaultColorPale
                     <span>Share on X</span>
                 </a>
                 <a
-                    href={`https://wa.me/?text=Check%20out%20this%20website%20that%20lets%20you%20create%20and%20share%20custom%20color%20palettes%20for%20fzf!%20${encodeURIComponent(link)}`}
+                    href={`https://wa.me/?text=Check%20out%20this%20website%20that%20lets%20you%20create%20and%20share%20custom%20color%20palettes%20for%20fzf!%20${encodeURIComponent(constructLink(colorPalette))}`}
                     className={"button shareBox"}
                     target={"_blank"}
                     rel={"noreferrer noopener"}

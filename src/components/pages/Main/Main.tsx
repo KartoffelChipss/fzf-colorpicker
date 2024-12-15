@@ -7,14 +7,16 @@ import {useEffect, useState} from "preact/hooks";
 
 const Main = () => {
     const query = window.location.search;
+
     const [colorPalette, setColorPalette] = useState<ColorPalette>(
         extractColorPaletteFromUrl(query)
     );
 
     useEffect(() => {
-        const params = new URLSearchParams(colorPalette as any);
-        window.history.replaceState(null, "", `?${params.toString()}`);
-    }, [colorPalette]);
+        if (query) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }, [query]);
 
     return (
         <>
